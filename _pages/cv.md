@@ -11,35 +11,27 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* Ph.D in Engineering,  University of Oxford, 2025-Current
+* MEng in Electrical and Electronic Engineering, University of Nottingham, 2025
+
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Summer 2025: Research Assistant
+  * University of Oxford
+  * Duties includes: Researching GPU Memory Architectures for AI Acceleration
+  * Supervisor: Prof. Amro Awad
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Summer 2024: Intern
+  * Qualcomm Technologies
+  * Working in R&D Lab on a variety of projects
+ 
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Summer 2023: Intern
+  * Qualcomm Technologies
+  * Working in Physical Design and Implementation
   
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+  
 
 Publications
 ======
