@@ -6,7 +6,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-I'm a first Year Engineering PhD @ the University of Oxford. My research interests are in next-generation Memory Architectures and Memory Optimizations for better, more efficient AI systems.
+I'm a first Year Engineering PhD @ the University of Oxford. My current research interests are in next-generation Memory Architectures and Memory Optimizations for better, more efficient AI systems.
 
 Prior to starting my PhD, I completed my MEng in Electrical and Electronic Engineering at the University of Nottingham (First Class) in 2025. During my undergraduate studies, I completed two summer internships at Qualcomm working in the Physical Design team and the R&D Lab team as part of my UKESF scholarship. I also spent a month as a Research Assistant at the University of Oxford researching GPU memory architectures as a prefix to starting my DPhil in Engineering in October 2025.
 
