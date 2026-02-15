@@ -37,23 +37,15 @@ Work experience
 Publications
 ======
 Will be updated
-#  <ul>{% for post in site.publications reversed %}
- #   {% include archive-single-cv.html %}
-  #{% endfor %}</ul>
+
   
 Talks
 ======
 Will be updated
-#  <ul>{% for post in site.talks reversed %}
- #   {% include archive-single-talk-cv.html  %}
-  #{% endfor %}</ul>
-  
-#Teaching
+
+Teaching
 ======
- # <ul>{% for post in site.teaching reversed %}
-  #  {% include archive-single-cv.html %}
- # {% endfor %}</ul>
+Will be updated
   
-#Service and leadership
+Service and leadership
 ======
-#* Currently signed in to 43 different slack teams
