@@ -23,7 +23,7 @@ repository               : "https://w-p-taylor.github.io/"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "images/selfie.jpg"
+  avatar           : "selfie.jpg"
   name             : "William Taylor"
   pronouns         : # example: "she/her"  
   bio              : "Engineering Phd Student @ University of Oxford"
