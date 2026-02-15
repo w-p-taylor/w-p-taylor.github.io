@@ -24,9 +24,9 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "selfie.jpg"
-  name             : "Your Sidebar Name"
+  name             : "William Taylor"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
+  bio              : "Engineering Phd Student @ University of Oxford"
   location         : "Earth"
   employer         : "Red Brick University"
   uri              : # URL
