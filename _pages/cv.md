@@ -19,7 +19,7 @@ Work experience
 ======
 * Summer 2025: Research Assistant
   * University of Oxford
-  * Duties includes: Researching GPU Memory Architectures for AI Acceleration
+  * Researching GPU Memory Architectures for AI Acceleration
   * Supervisor: Prof. Amro Awad
 
 * Summer 2024: Intern
@@ -35,22 +35,24 @@ Work experience
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+Will be updated
+#  <ul>{% for post in site.publications reversed %}
+ #   {% include archive-single-cv.html %}
+  #{% endfor %}</ul>
   
 Talks
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
+Will be updated
+#  <ul>{% for post in site.talks reversed %}
+ #   {% include archive-single-talk-cv.html  %}
+  #{% endfor %}</ul>
   
-Teaching
+#Teaching
 ======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+ # <ul>{% for post in site.teaching reversed %}
+  #  {% include archive-single-cv.html %}
+ # {% endfor %}</ul>
   
-Service and leadership
+#Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+#* Currently signed in to 43 different slack teams
