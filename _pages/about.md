@@ -14,10 +14,5 @@ I am a member of the **Oxford Secure Computer Architecture Research (OSCAR)** gr
 
 My research interests are in next-generation Memory Architectures and Memory Optimizations for better, more efficient AI systems.
 
-A data-driven personal website
-======
 
-
-Getting started
-======
 
