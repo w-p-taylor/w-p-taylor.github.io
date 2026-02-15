@@ -16,7 +16,7 @@ description              : &description "Your Name's academic portfolio"   # Upd
 url                      : url                      : https://academicpages.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "w-p-taylor/w-p-taylor.github.io" https://academicpages.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
+repository               : "w-p-taylor.github.io" https://academicpages.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "w-p-taylor/w-p-taylor.github.io"
