@@ -1,15 +1,18 @@
 ---
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
+title: "About Me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
+ Hi :) I'm a first Year Engineering PhD @ the University of Oxford working on efficient memory architectures & optimizations for AI systems/accelerators. 
 
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
+I completed my MEng in Electrical and Electronic Engineering at the University of Nottingham (First Class) in 2025. During my undergraduate studies, I completed two summer internships at Qualcomm working in the Physical Design team and the R&D Lab team as part of my UKESF scholarship. I also spent a month as a Research Assistant at the University of Oxford researching GPU memory architectures as a prefix to starting my DPhil in Engineering in October 2025.
 
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
+I am a member of the** Oxford Secure Computer Architecture Research (OSCAR)** group as well as a contributor to the **Computing infrastructure Group**. My PhD (Oxford calls them DPhils) is fully funded by the Advanced Research and Invention Agency (ARIA) as part of Oxford-based Project GLASS which aims to design the next generation of AI systems from physical layer design to the Applicaiton layer. (Read here for more:https://eng.ox.ac.uk/computing/glass)
+
+My research interests are in next-generation Memory Architectures and Memory Optimizations for better, more efficient AI systems.
 
 A data-driven personal website
 ======
