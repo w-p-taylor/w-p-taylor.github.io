@@ -13,6 +13,7 @@ Education
 ======
 * Ph.D in Engineering,  University of Oxford, 2025-Current
 * MEng in Electrical and Electronic Engineering, University of Nottingham, 2025
+* UK Electronic Skills Foundation (UKESF) Scholar (2023-2025)
 
 
 Work experience
@@ -31,7 +32,7 @@ Work experience
   * Qualcomm Technologies
   * Working in Physical Design and Implementation
   
-  
+
 
 Publications
 ======
