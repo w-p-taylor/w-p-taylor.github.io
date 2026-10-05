@@ -42,8 +42,70 @@
     "vendor/font-awesome/brands"
 ;
 
-/* Centre the top navigation bar */
+/* ===== Custom look ===== */
+
+/* Accent colours: change these two to restyle everything */
+:root {
+  --wt-accent: #002147;   /* Oxford blue */
+  --wt-highlight: #c9a227; /* gold */
+}
+html[data-theme="dark"] {
+  --wt-accent: #8fb3ff;   /* lighter blue so it shows on dark backgrounds */
+}
+
+/* Top menu: centred, with a coloured line underneath */
+.masthead {
+  border-bottom: 3px solid var(--wt-accent);
+}
 .greedy-nav .visible-links {
   margin-left: auto;
   margin-right: auto;
+}
+.greedy-nav a {
+  transition: color 0.2s ease;
+}
+.greedy-nav a:hover {
+  color: var(--wt-highlight);
+}
+
+/* Serif headings for an academic feel */
+.page__title,
+.page__content h1,
+.page__content h2,
+.author__name {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Page title and section headings */
+.page__title {
+  color: var(--wt-accent);
+}
+.page__content h1 {
+  border-bottom: none;
+  border-left: 4px solid var(--wt-highlight);
+  padding-left: 0.6em;
+  margin-top: 1.6em;
+  color: var(--wt-accent);
+}
+
+/* Profile photo with a coloured ring */
+.author__avatar img {
+  border: 3px solid var(--wt-accent);
+  padding: 3px;
+}
+
+/* Links in page content */
+.page__content a {
+  color: var(--wt-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.page__content a:hover {
+  border-bottom-color: var(--wt-highlight);
+}
+
+/* Publication and talk titles in lists */
+.archive__item-title a {
+  color: var(--wt-accent);
 }
