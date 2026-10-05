@@ -41,3 +41,9 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
+
+/* Centre the top navigation bar */
+.greedy-nav .visible-links {
+  margin-left: auto;
+  margin-right: auto;
+}
