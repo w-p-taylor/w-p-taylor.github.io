@@ -404,6 +404,7 @@ h1, h2, h3, h4,
   box-shadow: 0 8px 22px rgba(11, 42, 91, 0.1);
 }
 .archive__item-title {
+  color: var(--wt-accent);
   font-family: var(--wt-mono);
   font-size: 1.15em;
   margin-top: 0 !important;
@@ -426,14 +427,6 @@ h1, h2, h3, h4,
 .archive__item p:first-of-type {
   font-family: var(--wt-mono);
   font-size: 0.78em;
-}
-
-/* Make publication titles non-clickable */
-.page__content a[href*="/publication/"] {
-  pointer-events: none;
-  cursor: default;
-  color: inherit;
-  background-image: none;
 }
 
 /* ----- Footer ----- */
