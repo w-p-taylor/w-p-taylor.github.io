@@ -97,6 +97,9 @@ html[data-theme="dark"] {
 }
 
 /* ----- Canvas: dot grid like engineering paper ----- */
+html {
+  background-color: var(--wt-paper);
+}
 body {
   font-family: var(--wt-sans);
   color: var(--wt-ink);
@@ -463,4 +466,131 @@ h1, h2, h3, h4,
   #main .sidebar .author__name {
     font-size: 1.4em;
   }
+}
+
+/* ----- Homepage sections ----- */
+
+/* Research interests as tags */
+.page__content .wt-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+.page__content .wt-tags li {
+  margin: 0;
+  padding: 0.3em 0.85em;
+  font-family: var(--wt-mono);
+  font-size: 0.8em;
+  color: var(--wt-accent);
+  background: color-mix(in srgb, var(--wt-accent) 7%, var(--wt-card));
+  border: 1px solid color-mix(in srgb, var(--wt-accent) 25%, transparent);
+  border-radius: 4px;
+}
+
+/* News as a timeline */
+.page__content .wt-news {
+  position: relative;
+  font-size: 0.95em; /* set here so the line and dots share one em */
+  margin: 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+.page__content .wt-news::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  bottom: 0.6em;
+  left: 7.6em;
+  width: 1px;
+  background: var(--wt-rule);
+}
+.page__content .wt-news li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7em 1fr;
+  column-gap: 1.6em;
+  margin: 0 0 0.9em;
+  font-size: 1em;
+  line-height: 1.55;
+}
+.page__content .wt-news li::before {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  left: calc(7.6em - 4px);
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--wt-card);
+  border: 2px solid var(--wt-accent);
+  box-sizing: border-box;
+}
+.page__content .wt-news li:first-child::before {
+  background: var(--wt-accent);
+}
+.page__content .wt-news time {
+  font-family: var(--wt-mono);
+  font-size: 0.82em;
+  color: var(--wt-muted);
+  text-align: right;
+  padding-top: 0.15em;
+}
+@media (max-width: 600px) {
+  .page__content .wt-news::before { left: 0.3em; }
+  .page__content .wt-news li {
+    grid-template-columns: 1fr;
+    padding-left: 1.6em;
+  }
+  .page__content .wt-news li::before { left: calc(0.3em - 4px); }
+  .page__content .wt-news time { text-align: left; }
+}
+
+/* Selected publications */
+.page__content .wt-pubs {
+  margin: 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+.page__content .wt-pubs li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  margin: 0 0 0.8em;
+  padding: 0.8em 1em;
+  background: var(--wt-card);
+  border: 1px solid var(--wt-rule);
+  border-left: 3px solid var(--wt-accent);
+  border-radius: 4px;
+}
+.wt-pubs__venue {
+  font-family: var(--wt-mono);
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  color: var(--wt-muted);
+}
+.wt-pubs__title {
+  font-family: var(--wt-mono);
+  font-weight: 600;
+  color: var(--wt-accent);
+  line-height: 1.35;
+}
+.page__content .wt-more {
+  font-family: var(--wt-mono);
+  font-size: 0.85em;
+}
+
+/* ----- Live memory-cell background (assets/js/wt-cells.js) ----- */
+.wt-cells {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+/* the canvas draws the grid, so drop the static dots */
+html.wt-cells-on body {
+  background-color: transparent;
+  background-image: none;
 }
