@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Engineering,  University of Oxford, 2025-Current
+* Ph.D in Engineering, University of Oxford, 2025-Current
 * MEng in Electrical and Electronic Engineering, University of Nottingham, 2025
 * UK Electronic Skills Foundation (UKESF) Scholar (2023-2025)
 
@@ -26,19 +26,19 @@ Work experience
 * Summer 2024: Intern
   * Qualcomm Technologies
   * Working in R&D Lab on a variety of projects
- 
 
 * Summer 2023: Intern
   * Qualcomm Technologies
   * Working in Physical Design and Implementation
-  
 
 
 Publications
 ======
-Will be updated
+  <ul>{% for post in site.publications reversed %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
 
-  
+
 Talks
 ======
 Will be updated
@@ -46,6 +46,3 @@ Will be updated
 Teaching
 ======
 Will be updated
-  
-Service and leadership
-======
