@@ -60,6 +60,7 @@
   --wt-grid: rgba(11, 42, 91, 0.07);
   --wt-sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   --wt-mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+  --wt-col: 780px;             /* one column width shared by nav, profile and content */
 
   --global-bg-color: var(--wt-paper);
   --global-text-color: var(--wt-ink);
@@ -116,24 +117,15 @@ body {
   background: color-mix(in srgb, var(--wt-paper) 82%, transparent);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--wt-rule);
 }
-/* signal trace under the nav */
-.masthead::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--wt-accent) 0 22%, transparent 22%);
-}
-.greedy-nav {
-  background: transparent;
-}
-.greedy-nav .visible-links {
+.masthead .masthead__inner-wrap {
+  max-width: calc(var(--wt-col) + 2em);
   margin-left: auto;
   margin-right: auto;
+}
+.greedy-nav,
+.masthead__menu-item {
+  background: transparent;
 }
 .greedy-nav a {
   font-family: var(--wt-mono);
@@ -199,13 +191,14 @@ h1, h2, h3, h4,
 .page__content h2::before,
 .archive > h2::before {
   content: "0x" counter(wt-section, decimal-leading-zero);
-  display: block;
+  display: inline-block;
+  vertical-align: 0.2em;
+  margin-right: 0.75em;
   font-family: var(--wt-mono);
-  font-size: 0.5em;
+  font-size: 0.55em;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--wt-highlight);
-  margin-bottom: 0.2em;
+  letter-spacing: 0.05em;
+  color: var(--wt-muted);
 }
 /* the publications list uses h2 for each entry; don't number those */
 .archive__item-title::before {
@@ -235,24 +228,45 @@ h1, h2, h3, h4,
   border-radius: 3px;
 }
 
-/* ----- Profile: centred header above the content ----- */
+/* ----- Profile: header above the content, photo beside the text ----- */
 #main .sidebar {
   position: relative;
   top: auto;
   float: none;
   width: 100%;
-  max-width: none;
+  max-width: var(--wt-col);
   height: auto;
   overflow: visible;
-  margin: 1.5em 0 2em;
+  margin: 1.5em auto 2.25em;
   padding: 0 0 1.75em !important; /* the template's nav script sets an inline padding-top */
-  text-align: center;
+  text-align: left;
   border-bottom: 1px solid var(--wt-rule);
   /* --wt-p (0 → 1) is set by assets/js/wt-motion.js as you scroll */
   opacity: calc(1 - var(--wt-p, 0) * 0.85);
   transform: translateY(calc(var(--wt-p, 0) * -14px)) scale(calc(1 - var(--wt-p, 0) * 0.06));
-  transform-origin: top center;
+  transform-origin: top left;
   will-change: transform, opacity;
+}
+#main .sidebar > [itemscope] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "photo text"
+    "photo links";
+  column-gap: 1.75em;
+  align-items: center;
+}
+#main .sidebar .author__avatar { grid-area: photo; align-self: start; }
+#main .sidebar .author__content { grid-area: text; align-self: end; }
+#main .sidebar .author__urls-wrapper { grid-area: links; align-self: start; }
+@media (max-width: 600px) {
+  #main .sidebar > [itemscope] {
+    grid-template-areas:
+      "photo text"
+      "links links";
+    column-gap: 1em;
+  }
+  #main .sidebar .author__urls-wrapper { margin-top: 1em; }
 }
 #main .sidebar .author__avatar,
 #main .sidebar .author__content,
@@ -263,7 +277,7 @@ h1, h2, h3, h4,
 }
 .author__avatar img {
   display: block;
-  margin: 0 auto;
+  margin: 0;
   width: 132px;
   height: 132px;
   max-width: none;
@@ -282,7 +296,7 @@ h1, h2, h3, h4,
   font-family: var(--wt-mono);
   color: var(--wt-accent);
   font-size: 1.7em;
-  margin: 0.5em 0 0.15em;
+  margin: 0 0 0.15em;
   line-height: 1.1;
 }
 #main .sidebar .author__bio {
@@ -297,7 +311,7 @@ h1, h2, h3, h4,
 #main .sidebar .author__urls {
   display: flex !important; /* the template's resize script sets an inline display */
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5em;
   position: static;
   margin: 0;
@@ -341,12 +355,12 @@ h1, h2, h3, h4,
   color: var(--wt-accent);
 }
 
-/* Content column: centred under the header */
+/* Content column: same width and left edge as the profile header */
 #main .page,
 #main .archive {
   float: none;
   width: 100%;
-  max-width: 780px;
+  max-width: var(--wt-col);
   margin-left: auto;
   margin-right: auto;
   padding-left: 0;
@@ -431,9 +445,22 @@ h1, h2, h3, h4,
   font-family: var(--wt-mono);
   font-size: 0.85em;
 }
+.page__footer footer {
+  max-width: calc(var(--wt-col) + 2em);
+}
 .page__footer a {
   color: var(--wt-muted);
 }
 .page__footer a:hover {
   color: var(--wt-accent);
+}
+
+@media (max-width: 600px) {
+  .author__avatar img {
+    width: 88px;
+    height: 88px;
+  }
+  #main .sidebar .author__name {
+    font-size: 1.4em;
+  }
 }
