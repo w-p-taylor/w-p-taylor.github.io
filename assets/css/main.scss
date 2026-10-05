@@ -46,11 +46,22 @@
 
 /* Accent colours: change these two to restyle everything */
 :root {
-  --wt-accent: #002147;   /* Oxford blue */
+  --wt-accent: #002147;    /* Oxford blue */
   --wt-highlight: #c9a227; /* gold */
 }
 html[data-theme="dark"] {
-  --wt-accent: #8fb3ff;   /* lighter blue so it shows on dark backgrounds */
+  --wt-accent: #8fb3ff;    /* lighter blue so it shows on dark backgrounds */
+}
+
+/* White background in light mode */
+html:not([data-theme="dark"]) {
+  --global-bg-color: #ffffff;
+}
+html:not([data-theme="dark"]) body,
+html:not([data-theme="dark"]) .masthead,
+html:not([data-theme="dark"]) .greedy-nav,
+html:not([data-theme="dark"]) .page__footer {
+  background-color: #ffffff;
 }
 
 /* Top menu: centred, with a coloured line underneath */
@@ -65,7 +76,12 @@ html[data-theme="dark"] {
   transition: color 0.2s ease;
 }
 .greedy-nav a:hover {
-  color: var(--wt-highlight);
+  color: var(--wt-accent);
+}
+/* Animated underline under menu links, in gold */
+.greedy-nav .visible-links a::before {
+  background: var(--wt-highlight);
+  height: 3px;
 }
 
 /* Serif headings for an academic feel */
@@ -88,10 +104,27 @@ html[data-theme="dark"] {
   color: var(--wt-accent);
 }
 
-/* Profile photo with a coloured ring */
+/* Profile photo: gradient ring, shadow, lift on hover */
 .author__avatar img {
-  border: 3px solid var(--wt-accent);
-  padding: 3px;
+  border: none;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--wt-accent), var(--wt-highlight));
+  box-shadow: 0 6px 18px rgba(0, 33, 71, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.author__avatar img:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(0, 33, 71, 0.35);
+}
+
+/* Sidebar name and subtitle */
+.author__name {
+  color: var(--wt-accent);
+  font-size: 1.3em;
+}
+.author__bio {
+  font-style: italic;
 }
 
 /* Links in page content */
@@ -108,4 +141,9 @@ html[data-theme="dark"] {
 /* Publication and talk titles in lists */
 .archive__item-title a {
   color: var(--wt-accent);
+}
+
+/* Footer: thin accent line on top */
+.page__footer {
+  border-top: 2px solid var(--wt-accent);
 }
