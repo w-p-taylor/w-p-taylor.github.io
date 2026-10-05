@@ -147,3 +147,11 @@ html:not([data-theme="dark"]) .page__footer {
 .page__footer {
   border-top: 2px solid var(--wt-accent);
 }
+
+/* Make publication titles non-clickable */
+.page__content a[href*="/publication/"] {
+  pointer-events: none;
+  cursor: default;
+  color: inherit;
+  border-bottom: none;
+}
