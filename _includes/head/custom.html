@@ -19,4 +19,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"/>
 
+<!-- Scroll effects; content stays visible if the script never loads -->
+<script>
+  document.documentElement.classList.add("wt-js");
+  setTimeout(function () { if (!window.wtMotion) document.documentElement.classList.remove("wt-js"); }, 2000);
+</script>
+<script src="{{ base_path }}/assets/js/wt-motion.js" defer></script>
+
 <!-- end custom head snippets -->

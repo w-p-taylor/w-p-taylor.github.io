@@ -44,19 +44,19 @@
 
 /* ==========================================================================
    CUSTOM LOOK — "silicon schematic"
-   Engineering-paper grid, hex-addressed sections, chip-style accents.
+   Dot-grid background, hex-addressed sections, profile header on top.
    Change the tokens below to restyle everything.
    ========================================================================== */
 
 :root {
   --wt-accent: #0b2a5b;        /* deep Oxford blue */
   --wt-highlight: #d4a017;     /* signal gold */
-  --wt-paper: #f7f5ef;         /* warm engineering paper */
+  --wt-paper: #ffffff;
   --wt-card: #ffffff;
   --wt-ink: #1b1f27;
   --wt-muted: #5f6673;
   --wt-rule: rgba(11, 42, 91, 0.14);
-  --wt-grid: rgba(11, 42, 91, 0.09);
+  --wt-grid: rgba(11, 42, 91, 0.07);
   --wt-serif: "Fraunces", Georgia, "Times New Roman", serif;
   --wt-sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   --wt-mono: "IBM Plex Mono", Menlo, Consolas, monospace;
@@ -235,37 +235,144 @@ h1, h2, h3, h4,
   border-radius: 3px;
 }
 
-/* ----- Sidebar: chip-style avatar ----- */
-.author__avatar img {
-  border-radius: 6px;
-  border: 2px solid var(--wt-accent);
+/* ----- Profile: centred header above the content ----- */
+#main .sidebar {
+  position: relative;
+  top: auto;
+  float: none;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  overflow: visible;
+  margin: 1.5em 0 2em;
+  padding: 0 0 1.75em !important; /* the template's nav script sets an inline padding-top */
+  text-align: center;
+  border-bottom: 1px solid var(--wt-rule);
+  /* --wt-p (0 → 1) is set by assets/js/wt-motion.js as you scroll */
+  opacity: calc(1 - var(--wt-p, 0) * 0.85);
+  transform: translateY(calc(var(--wt-p, 0) * -14px)) scale(calc(1 - var(--wt-p, 0) * 0.06));
+  transform-origin: top center;
+  will-change: transform, opacity;
+}
+#main .sidebar .author__avatar,
+#main .sidebar .author__content,
+#main .sidebar .author__urls-wrapper {
+  display: block;
+  width: auto;
   padding: 0;
-  box-shadow: 6px 6px 0 var(--wt-highlight);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.author__avatar img {
+  display: block;
+  margin: 0 auto;
+  width: 132px;
+  height: 132px;
+  max-width: none;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 0;
+  border: 3px solid var(--wt-card);
+  box-shadow: 0 0 0 1px var(--wt-rule), 0 10px 28px rgba(11, 42, 91, 0.18);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 .author__avatar img:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 9px 9px 0 var(--wt-highlight);
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px var(--wt-rule), 0 14px 34px rgba(11, 42, 91, 0.24);
 }
-.author__name {
+#main .sidebar .author__name {
+  font-family: var(--wt-serif);
   color: var(--wt-accent);
-  font-size: 1.35em;
-  margin-top: 0.6em;
+  font-size: 1.9em;
+  margin: 0.5em 0 0.15em;
+  line-height: 1.1;
 }
-.author__bio {
+#main .sidebar .author__bio {
   font-family: var(--wt-mono);
-  font-size: 0.8em;
+  font-size: 0.85em;
   color: var(--wt-muted);
+  margin: 0 0 1em;
 }
-.author__bio::before {
-  content: "> ";
-  color: var(--wt-highlight);
+.author__urls-wrapper button {
+  display: none;
 }
-.author__urls a {
+#main .sidebar .author__urls {
+  display: flex !important; /* the template's resize script sets an inline display */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.author__urls::before,
+.author__urls::after {
+  display: none !important;
+}
+/* every item (link or plain text) is the same pill */
+#main .sidebar .author__urls li {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.35em 0.9em;
+  font-size: 0.8em;
+  line-height: 1.4;
+  color: var(--wt-muted);
+  border: 1px solid var(--wt-rule);
+  border-radius: 999px;
+  background: var(--wt-card);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+#main .sidebar .author__urls a {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
   color: var(--wt-ink);
+  text-decoration: none;
 }
-.author__urls a:hover {
+#main .sidebar .author__urls li:has(a:hover) {
+  border-color: var(--wt-accent);
+  transform: translateY(-1px);
+}
+#main .sidebar .author__urls a:hover {
   color: var(--wt-accent);
+}
+
+/* Content column: centred under the header */
+#main .page,
+#main .archive {
+  float: none;
+  width: 100%;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ----- Scroll reveal (classes added by assets/js/wt-motion.js) ----- */
+.wt-js .wt-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.wt-js .wt-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #main .sidebar {
+    opacity: 1;
+    transform: none;
+  }
+  .wt-js .wt-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ----- Publications / talks as cards ----- */
