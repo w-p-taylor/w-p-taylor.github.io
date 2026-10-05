@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Engineering, University of Oxford, 2025-Current
+* DPhil (Oxford's name for a PhD) in Engineering Science, University of Oxford, 2025-Current
 * MEng in Electrical and Electronic Engineering, University of Nottingham, 2025
 * UK Electronic Skills Foundation (UKESF) Scholar (2023-2025)
 
