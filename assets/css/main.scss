@@ -574,3 +574,62 @@ h1, h2, h3, h4,
     margin-bottom: 0.6em;
   }
 }
+
+/* TL;DR drop-down with the full story */
+.page__content .wt-full {
+  margin-top: 1em;
+  padding-top: 0.8em;
+  border-top: 1px dashed var(--wt-rule);
+}
+.page__content .wt-full summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* rem: the label's font-size drops to 0 when open */
+  font-family: var(--wt-mono);
+  font-size: 0.8em;
+  color: var(--wt-accent);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.page__content .wt-full summary::-webkit-details-marker {
+  display: none;
+}
+.page__content .wt-full summary::before {
+  content: "\25B8"; /* ▸ */
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.page__content .wt-full[open] summary::before {
+  transform: rotate(90deg);
+}
+.page__content .wt-full[open] summary {
+  font-size: 0;  /* swap the label text when open */
+}
+.page__content .wt-full[open] summary::before {
+  font-size: 0.8rem;
+}
+.page__content .wt-full[open] summary::after {
+  content: "Show less";
+  font-size: 0.8rem;
+}
+.page__content .wt-full__body {
+  margin-top: 0.9em;
+  font-size: 0.97em;
+}
+.page__content .wt-full__body p:last-child {
+  margin-bottom: 0.2em;
+}
+.page__content .wt-full[open] .wt-full__body {
+  animation: wt-drop 0.35s ease both;
+}
+@keyframes wt-drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+.wt-tldr__label {
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page__content .wt-full[open] .wt-full__body { animation: none; }
+}

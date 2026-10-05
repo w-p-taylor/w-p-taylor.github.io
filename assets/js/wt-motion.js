@@ -2,6 +2,14 @@
 (function () {
   var root = document.documentElement;
   window.wtMotion = true;
+
+  // Clicking the TL;DR label also opens/closes the full version
+  var tldrLabel = document.querySelector(".wt-tldr__label");
+  var tldrFull = document.querySelector(".wt-full");
+  if (tldrLabel && tldrFull) {
+    tldrLabel.addEventListener("click", function () { tldrFull.open = !tldrFull.open; });
+  }
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
     root.classList.remove("wt-js");
     return;
