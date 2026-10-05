@@ -171,22 +171,22 @@ h1, h2, h3, h4,
   line-height: 1.7;
 }
 
-/* Section headings get hex "memory addresses" */
-.page__content,
-.archive {
-  counter-reset: wt-section;
-}
+/* Section headings */
 .page__content h1,
 .page__content h2,
 .archive > h2 {
-  counter-increment: wt-section;
   color: var(--wt-accent);
   border-bottom: 1px dashed var(--wt-rule);
   padding-bottom: 0.3em;
   margin-top: 1.8em;
 }
-.page__content h1::before,
-.page__content h2::before,
+/* Publications listing only: category headings get a hex "memory address" */
+.archive {
+  counter-reset: wt-section;
+}
+.archive > h2 {
+  counter-increment: wt-section;
+}
 .archive > h2::before {
   content: "0x" counter(wt-section, decimal-leading-zero);
   display: inline-block;
@@ -465,33 +465,14 @@ h1, h2, h3, h4,
 
 /* ----- Homepage sections ----- */
 
-/* Research interests: a vertical list, each item at its own "address"
-   (16-byte steps: 0x000, 0x010, 0x020, ...; correct hex up to 10 items) */
+/* Research interests: a plain vertical list */
 .page__content .wt-interests {
-  counter-reset: wt-addr -1;
   margin: 0.5em 0 0;
-  padding: 0;
-  list-style: none;
+  padding-left: 1.2em;
 }
 .page__content .wt-interests li {
-  counter-increment: wt-addr;
-  display: flex;
-  align-items: baseline;
-  gap: 1em;
-  margin: 0;
-  padding: 0.45em 0;
-  border-bottom: 1px dashed var(--wt-rule);
-  font-family: var(--wt-mono);
-  font-size: 0.95em;
-  color: var(--wt-ink);
+  margin: 0.2em 0;
 }
-.page__content .wt-interests li:last-child {
-  border-bottom: none;
-}
-.page__content .wt-interests li::before {
-  content: "0x" counter(wt-addr, decimal-leading-zero) "0";
-  min-width: 3.2em;
-  font-size: 0.75em;
-  letter-spacing: 0.05em;
-  color: var(--wt-muted);
+.page__content .wt-interests li::marker {
+  color: var(--wt-accent);
 }
