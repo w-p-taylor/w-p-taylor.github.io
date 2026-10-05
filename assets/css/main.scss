@@ -465,22 +465,33 @@ h1, h2, h3, h4,
 
 /* ----- Homepage sections ----- */
 
-/* Research interests as tags */
-.page__content .wt-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
+/* Research interests: a vertical list, each item at its own "address"
+   (16-byte steps: 0x000, 0x010, 0x020, ...; correct hex up to 10 items) */
+.page__content .wt-interests {
+  counter-reset: wt-addr -1;
   margin: 0.5em 0 0;
   padding: 0;
   list-style: none;
 }
-.page__content .wt-tags li {
+.page__content .wt-interests li {
+  counter-increment: wt-addr;
+  display: flex;
+  align-items: baseline;
+  gap: 1em;
   margin: 0;
-  padding: 0.3em 0.85em;
+  padding: 0.45em 0;
+  border-bottom: 1px dashed var(--wt-rule);
   font-family: var(--wt-mono);
-  font-size: 0.8em;
-  color: var(--wt-accent);
-  background: color-mix(in srgb, var(--wt-accent) 7%, var(--wt-card));
-  border: 1px solid color-mix(in srgb, var(--wt-accent) 25%, transparent);
-  border-radius: 4px;
+  font-size: 0.95em;
+  color: var(--wt-ink);
+}
+.page__content .wt-interests li:last-child {
+  border-bottom: none;
+}
+.page__content .wt-interests li::before {
+  content: "0x" counter(wt-addr, decimal-leading-zero) "0";
+  min-width: 3.2em;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  color: var(--wt-muted);
 }
