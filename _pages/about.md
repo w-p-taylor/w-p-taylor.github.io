@@ -17,8 +17,7 @@ redirect_from:
         <li>Computer Architecture</li>
         <li>Memory Systems</li>
         <li>Hardware-based Security</li>
-        <li>Machine Learning Accelerators</li>
-        <li>High-Performance Computing</li>
+        <li>Accelerators</li>
         <li>Parallelism</li>
       </ul>
     </dd>
