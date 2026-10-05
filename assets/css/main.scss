@@ -44,7 +44,7 @@
 
 /* ==========================================================================
    CUSTOM LOOK — "silicon schematic"
-   Dot-grid background, monospace headings, hex-addressed sections,
+   Plain background, monospace headings, hex-addressed sections,
    profile header on top. Oxford blue is the only accent colour.
    Change the tokens below to restyle everything.
    ========================================================================== */
@@ -57,7 +57,6 @@
   --wt-ink: #1b1f27;
   --wt-muted: #5f6673;
   --wt-rule: rgba(11, 42, 91, 0.14);
-  --wt-grid: rgba(11, 42, 91, 0.07);
   --wt-sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   --wt-mono: "IBM Plex Mono", Menlo, Consolas, monospace;
   --wt-col: 780px;             /* one column width shared by nav, profile and content */
@@ -82,7 +81,6 @@ html[data-theme="dark"] {
   --wt-ink: #e6e9ef;
   --wt-muted: #97a0b2;
   --wt-rule: rgba(156, 192, 255, 0.16);
-  --wt-grid: rgba(156, 192, 255, 0.07);
 
   --global-bg-color: var(--wt-paper);
   --global-text-color: var(--wt-ink);
@@ -104,9 +102,6 @@ body {
   font-family: var(--wt-sans);
   color: var(--wt-ink);
   background-color: var(--wt-paper);
-  background-image: radial-gradient(var(--wt-grid) 1px, transparent 1px);
-  background-size: 22px 22px;
-  background-attachment: fixed;
 }
 
 ::selection {
@@ -490,64 +485,6 @@ h1, h2, h3, h4,
   border-radius: 4px;
 }
 
-/* News as a timeline */
-.page__content .wt-news {
-  position: relative;
-  font-size: 0.95em; /* set here so the line and dots share one em */
-  margin: 0.5em 0 0;
-  padding: 0;
-  list-style: none;
-}
-.page__content .wt-news::before {
-  content: "";
-  position: absolute;
-  top: 0.6em;
-  bottom: 0.6em;
-  left: 7.6em;
-  width: 1px;
-  background: var(--wt-rule);
-}
-.page__content .wt-news li {
-  position: relative;
-  display: grid;
-  grid-template-columns: 7em 1fr;
-  column-gap: 1.6em;
-  margin: 0 0 0.9em;
-  font-size: 1em;
-  line-height: 1.55;
-}
-.page__content .wt-news li::before {
-  content: "";
-  position: absolute;
-  top: 0.5em;
-  left: calc(7.6em - 4px);
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-  background: var(--wt-card);
-  border: 2px solid var(--wt-accent);
-  box-sizing: border-box;
-}
-.page__content .wt-news li:first-child::before {
-  background: var(--wt-accent);
-}
-.page__content .wt-news time {
-  font-family: var(--wt-mono);
-  font-size: 0.82em;
-  color: var(--wt-muted);
-  text-align: right;
-  padding-top: 0.15em;
-}
-@media (max-width: 600px) {
-  .page__content .wt-news::before { left: 0.3em; }
-  .page__content .wt-news li {
-    grid-template-columns: 1fr;
-    padding-left: 1.6em;
-  }
-  .page__content .wt-news li::before { left: calc(0.3em - 4px); }
-  .page__content .wt-news time { text-align: left; }
-}
-
 /* Selected publications */
 .page__content .wt-pubs {
   margin: 0.5em 0 0;
@@ -580,17 +517,4 @@ h1, h2, h3, h4,
 .page__content .wt-more {
   font-family: var(--wt-mono);
   font-size: 0.85em;
-}
-
-/* ----- Live memory-cell background (assets/js/wt-cells.js) ----- */
-.wt-cells {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-/* the canvas draws the grid, so drop the static dots */
-html.wt-cells-on body {
-  background-color: transparent;
-  background-image: none;
 }
