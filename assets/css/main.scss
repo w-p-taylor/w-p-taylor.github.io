@@ -42,110 +42,390 @@
     "vendor/font-awesome/brands"
 ;
 
-/* ===== Custom look ===== */
+/* ==========================================================================
+   CUSTOM LOOK — "silicon schematic"
+   Plain background, monospace headings, hex-addressed sections,
+   profile header on top. Oxford blue is the only accent colour.
+   Change the tokens below to restyle everything.
+   ========================================================================== */
 
-/* Accent colours: change these two to restyle everything */
 :root {
-  --wt-accent: #002147;    /* Oxford blue */
-  --wt-highlight: #c9a227; /* gold */
+  --wt-accent: #0b2a5b;        /* deep Oxford blue */
+  --wt-highlight: var(--wt-accent); /* single-colour palette: Oxford blue only */
+  --wt-paper: #ffffff;
+  --wt-card: #ffffff;
+  --wt-ink: #1b1f27;
+  --wt-muted: #5f6673;
+  --wt-rule: rgba(11, 42, 91, 0.14);
+  --wt-sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --wt-mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+  --wt-col: 780px;             /* one column width shared by nav, profile and content */
+
+  --global-bg-color: var(--wt-paper);
+  --global-text-color: var(--wt-ink);
+  --global-text-color-light: var(--wt-muted);
+  --global-link-color: var(--wt-accent);
+  --global-link-color-hover: var(--wt-accent);
+  --global-link-color-visited: var(--wt-accent);
+  --global-masthead-link-color: var(--wt-ink);
+  --global-masthead-link-color-hover: var(--wt-accent);
+  --global-border-color: var(--wt-rule);
+  --global-footer-bg-color: transparent;
 }
+
 html[data-theme="dark"] {
-  --wt-accent: #8fb3ff;    /* lighter blue so it shows on dark backgrounds */
+  --wt-accent: #9cc0ff;
+  --wt-highlight: var(--wt-accent);
+  --wt-paper: #0c111c;
+  --wt-card: #131a29;
+  --wt-ink: #e6e9ef;
+  --wt-muted: #97a0b2;
+  --wt-rule: rgba(156, 192, 255, 0.16);
+
+  --global-bg-color: var(--wt-paper);
+  --global-text-color: var(--wt-ink);
+  --global-text-color-light: var(--wt-muted);
+  --global-link-color: var(--wt-accent);
+  --global-link-color-hover: var(--wt-accent);
+  --global-link-color-visited: var(--wt-accent);
+  --global-masthead-link-color: var(--wt-ink);
+  --global-masthead-link-color-hover: var(--wt-accent);
+  --global-border-color: var(--wt-rule);
+  --global-footer-bg-color: transparent;
 }
 
-/* White background in light mode */
-html:not([data-theme="dark"]) {
-  --global-bg-color: #ffffff;
+/* ----- Canvas: dot grid like engineering paper ----- */
+html {
+  background-color: var(--wt-paper);
 }
-html:not([data-theme="dark"]) body,
-html:not([data-theme="dark"]) .masthead,
-html:not([data-theme="dark"]) .greedy-nav,
-html:not([data-theme="dark"]) .page__footer {
-  background-color: #ffffff;
+body {
+  font-family: var(--wt-sans);
+  color: var(--wt-ink);
+  background-color: var(--wt-paper);
 }
 
-/* Top menu: centred, with a coloured line underneath */
+::selection {
+  background: var(--wt-accent);
+  color: var(--wt-paper);
+}
+
+/* ----- Masthead ----- */
 .masthead {
-  border-bottom: 3px solid var(--wt-accent);
+  z-index: 20;
+  background: color-mix(in srgb, var(--wt-paper) 82%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
-.greedy-nav .visible-links {
+.masthead .masthead__inner-wrap {
+  max-width: calc(var(--wt-col) + 2em);
   margin-left: auto;
   margin-right: auto;
 }
+.greedy-nav,
+.masthead__menu-item {
+  background: transparent;
+}
 .greedy-nav a {
+  font-family: var(--wt-mono);
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
   transition: color 0.2s ease;
 }
-.greedy-nav a:hover {
+.greedy-nav .visible-links li:not(.masthead__menu-item--lg):not(#theme-toggle) a::after {
+  content: "/";
+  color: var(--wt-highlight);
+  margin-left: 0.1em;
+}
+.greedy-nav .masthead__menu-item--lg a {
+  font-family: var(--wt-mono);
+  font-size: 1.35em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.greedy-nav a:hover,
+.greedy-nav .selected a {
   color: var(--wt-accent);
 }
-/* Animated underline under menu links, in gold */
 .greedy-nav .visible-links a::before {
   background: var(--wt-highlight);
-  height: 3px;
+  height: 2px;
 }
 
-/* Serif headings for an academic feel */
+/* ----- Typography ----- */
+h1, h2, h3, h4,
 .page__title,
-.page__content h1,
-.page__content h2,
 .author__name {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--wt-mono);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
-
-/* Page title and section headings */
 .page__title {
   color: var(--wt-accent);
+  font-size: 2.1em;
+  line-height: 1.1;
 }
-.page__content h1 {
-  border-bottom: none;
-  border-left: 4px solid var(--wt-highlight);
-  padding-left: 0.6em;
-  margin-top: 1.6em;
+.page__content {
+  font-size: 1.02em;
+  line-height: 1.7;
+}
+
+/* Section headings get hex "memory addresses" */
+.page__content,
+.archive {
+  counter-reset: wt-section;
+}
+.page__content h1,
+.page__content h2,
+.archive > h2 {
+  counter-increment: wt-section;
   color: var(--wt-accent);
+  border-bottom: 1px dashed var(--wt-rule);
+  padding-bottom: 0.3em;
+  margin-top: 1.8em;
+}
+.page__content h1::before,
+.page__content h2::before,
+.archive > h2::before {
+  content: "0x" counter(wt-section, decimal-leading-zero);
+  display: inline-block;
+  vertical-align: 0.2em;
+  margin-right: 0.75em;
+  font-family: var(--wt-mono);
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--wt-muted);
+}
+/* the publications list uses h2 for each entry; don't number those */
+.archive__item-title::before {
+  content: none !important;
 }
 
-/* Profile photo: gradient ring, shadow, lift on hover */
-.author__avatar img {
-  border: none;
-  border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, var(--wt-accent), var(--wt-highlight));
-  box-shadow: 0 6px 18px rgba(0, 33, 71, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.author__avatar img:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 10px 24px rgba(0, 33, 71, 0.35);
-}
-
-/* Sidebar name and subtitle */
-.author__name {
-  color: var(--wt-accent);
-  font-size: 1.3em;
-}
-.author__bio {
-  font-style: italic;
-}
-
-/* Links in page content */
+/* ----- Links: highlighter sweep ----- */
 .page__content a {
   color: var(--wt-accent);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
+  background-image: linear-gradient(var(--wt-highlight), var(--wt-highlight));
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease, color 0.25s ease;
 }
 .page__content a:hover {
-  border-bottom-color: var(--wt-highlight);
+  background-size: 100% 100%;
+  color: var(--wt-paper);
 }
 
-/* Publication and talk titles in lists */
-.archive__item-title a {
+/* Inline code as little register labels */
+.page__content code {
+  font-family: var(--wt-mono);
+  background: var(--wt-card);
+  border: 1px solid var(--wt-rule);
+  border-radius: 3px;
+}
+
+/* ----- Profile: header above the content, photo beside the text ----- */
+#main .sidebar {
+  position: relative;
+  top: auto;
+  float: none;
+  width: 100%;
+  max-width: var(--wt-col);
+  height: auto;
+  overflow: visible;
+  margin: 1.5em auto 2.25em;
+  padding: 0 0 1.75em !important; /* the template's nav script sets an inline padding-top */
+  text-align: left;
+  border-bottom: 1px solid var(--wt-rule);
+  /* --wt-p (0 → 1) is set by assets/js/wt-motion.js as you scroll */
+  opacity: calc(1 - var(--wt-p, 0) * 0.85);
+  transform: translateY(calc(var(--wt-p, 0) * -14px)) scale(calc(1 - var(--wt-p, 0) * 0.06));
+  transform-origin: top left;
+  will-change: transform, opacity;
+}
+#main .sidebar > [itemscope] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "photo text"
+    "photo links";
+  column-gap: 1.75em;
+  align-items: center;
+}
+#main .sidebar .author__avatar { grid-area: photo; align-self: start; }
+#main .sidebar .author__content { grid-area: text; align-self: end; }
+#main .sidebar .author__urls-wrapper { grid-area: links; align-self: start; }
+@media (max-width: 600px) {
+  #main .sidebar > [itemscope] {
+    grid-template-areas:
+      "photo text"
+      "links links";
+    column-gap: 1em;
+  }
+  #main .sidebar .author__urls-wrapper { margin-top: 1em; }
+}
+#main .sidebar .author__avatar,
+#main .sidebar .author__content,
+#main .sidebar .author__urls-wrapper {
+  display: block;
+  width: auto;
+  padding: 0;
+}
+.author__avatar img {
+  display: block;
+  margin: 0;
+  width: 132px;
+  height: 132px;
+  max-width: none;
+  object-fit: cover;
+  border-radius: 8px;
+  padding: 0;
+  border: 3px solid var(--wt-card);
+  box-shadow: 0 0 0 1px var(--wt-rule), 0 10px 28px rgba(11, 42, 91, 0.18);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.author__avatar img:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px var(--wt-rule), 0 14px 34px rgba(11, 42, 91, 0.24);
+}
+#main .sidebar .author__name {
+  font-family: var(--wt-mono);
+  color: var(--wt-accent);
+  font-size: 1.7em;
+  margin: 0 0 0.15em;
+  line-height: 1.1;
+}
+#main .sidebar .author__bio {
+  font-family: var(--wt-mono);
+  font-size: 0.85em;
+  color: var(--wt-muted);
+  margin: 0 0 1em;
+}
+.author__urls-wrapper button {
+  display: none;
+}
+#main .sidebar .author__urls {
+  display: flex !important; /* the template's resize script sets an inline display */
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5em;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.author__urls::before,
+.author__urls::after {
+  display: none !important;
+}
+/* every item (link or plain text) is the same pill */
+#main .sidebar .author__urls li {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.35em 0.9em;
+  font-size: 0.8em;
+  line-height: 1.4;
+  color: var(--wt-muted);
+  border: 1px solid var(--wt-rule);
+  border-radius: 999px;
+  background: var(--wt-card);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+#main .sidebar .author__urls a {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  color: var(--wt-ink);
+  text-decoration: none;
+}
+#main .sidebar .author__urls li:has(a:hover) {
+  border-color: var(--wt-accent);
+  transform: translateY(-1px);
+}
+#main .sidebar .author__urls a:hover {
   color: var(--wt-accent);
 }
 
-/* Footer: thin accent line on top */
-.page__footer {
-  border-top: 2px solid var(--wt-accent);
+/* Content column: same width and left edge as the profile header */
+#main .page,
+#main .archive {
+  float: none;
+  width: 100%;
+  max-width: var(--wt-col);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ----- Scroll reveal (classes added by assets/js/wt-motion.js) ----- */
+.wt-js .wt-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.wt-js .wt-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #main .sidebar {
+    opacity: 1;
+    transform: none;
+  }
+  .wt-js .wt-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ----- Publications / talks as cards ----- */
+.list__item .archive__item {
+  position: relative;
+  background: var(--wt-card);
+  border: 1px solid var(--wt-rule);
+  border-left: 3px solid var(--wt-accent);
+  border-radius: 4px;
+  padding: 1em 1.25em 0.4em;
+  margin-bottom: 1.1em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.list__item .archive__item:hover {
+  transform: translateY(-2px);
+  border-left-color: var(--wt-highlight);
+  box-shadow: 0 8px 22px rgba(11, 42, 91, 0.1);
+}
+.archive__item-title {
+  font-family: var(--wt-mono);
+  font-size: 1.15em;
+  margin-top: 0 !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.archive__item-title a {
+  color: var(--wt-accent);
+  text-decoration: none;
+  background-image: none;
+}
+/* the template adds an <hr> under category headings; the dashed rule replaces it */
+.archive > h2 + hr {
+  display: none;
+}
+.archive__item p {
+  font-size: 0.9em;
+  color: var(--wt-muted);
+}
+.archive__item p:first-of-type {
+  font-family: var(--wt-mono);
+  font-size: 0.78em;
 }
 
 /* Make publication titles non-clickable */
@@ -153,5 +433,203 @@ html:not([data-theme="dark"]) .page__footer {
   pointer-events: none;
   cursor: default;
   color: inherit;
-  border-bottom: none;
+  background-image: none;
+}
+
+/* ----- Footer ----- */
+.page__footer {
+  background: transparent;
+  border-top: 1px solid var(--wt-rule);
+  font-family: var(--wt-mono);
+  font-size: 0.85em;
+}
+.page__footer footer {
+  max-width: calc(var(--wt-col) + 2em);
+}
+.page__footer a {
+  color: var(--wt-muted);
+}
+.page__footer a:hover {
+  color: var(--wt-accent);
+}
+
+@media (max-width: 600px) {
+  .author__avatar img {
+    width: 88px;
+    height: 88px;
+  }
+  #main .sidebar .author__name {
+    font-size: 1.4em;
+  }
+}
+
+/* ----- Homepage sections ----- */
+
+/* Research interests as tags */
+.page__content .wt-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+.page__content .wt-tags li {
+  margin: 0;
+  padding: 0.3em 0.85em;
+  font-family: var(--wt-mono);
+  font-size: 0.8em;
+  color: var(--wt-accent);
+  background: color-mix(in srgb, var(--wt-accent) 7%, var(--wt-card));
+  border: 1px solid color-mix(in srgb, var(--wt-accent) 25%, transparent);
+  border-radius: 4px;
+}
+
+/* Selected publications */
+.page__content .wt-pubs {
+  margin: 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+.page__content .wt-pubs li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  margin: 0 0 0.8em;
+  padding: 0.8em 1em;
+  background: var(--wt-card);
+  border: 1px solid var(--wt-rule);
+  border-left: 3px solid var(--wt-accent);
+  border-radius: 4px;
+}
+.wt-pubs__venue {
+  font-family: var(--wt-mono);
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  color: var(--wt-muted);
+}
+.wt-pubs__title {
+  font-family: var(--wt-mono);
+  font-weight: 600;
+  color: var(--wt-accent);
+  line-height: 1.35;
+}
+.page__content .wt-more {
+  font-family: var(--wt-mono);
+  font-size: 0.85em;
+}
+
+/* TL;DR summary box at the top of the homepage */
+.page__content .wt-tldr {
+  position: relative;
+  margin: 0.5em 0 2em;
+  padding: 1.4em 1.4em 1em;
+  background: var(--wt-card);
+  border: 1px solid var(--wt-rule);
+  border-left: 3px solid var(--wt-accent);
+  border-radius: 4px;
+}
+.wt-tldr__label {
+  position: absolute;
+  top: -0.75em;
+  left: 1em;
+  padding: 0.1em 0.6em;
+  font-family: var(--wt-mono);
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--wt-paper);
+  background: var(--wt-accent);
+  border-radius: 3px;
+}
+.page__content .wt-tldr dl {
+  display: grid;
+  grid-template-columns: 6.5em 1fr;
+  gap: 0.6em 1em;
+  margin: 0;
+}
+.page__content .wt-tldr dt {
+  margin: 0;
+  padding-top: 0.15em;
+  font-family: var(--wt-mono);
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--wt-muted);
+}
+.page__content .wt-tldr dd {
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+.page__content .wt-tldr .wt-tags {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .page__content .wt-tldr dl {
+    grid-template-columns: 1fr;
+    gap: 0.15em;
+  }
+  .page__content .wt-tldr dd {
+    margin-bottom: 0.6em;
+  }
+}
+
+/* TL;DR drop-down with the full story */
+.page__content .wt-full {
+  margin-top: 1em;
+  padding-top: 0.8em;
+  border-top: 1px dashed var(--wt-rule);
+}
+.page__content .wt-full summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* rem: the label's font-size drops to 0 when open */
+  font-family: var(--wt-mono);
+  font-size: 0.8em;
+  color: var(--wt-accent);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.page__content .wt-full summary::-webkit-details-marker {
+  display: none;
+}
+.page__content .wt-full summary::before {
+  content: "\25B8"; /* ▸ */
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.page__content .wt-full[open] summary::before {
+  transform: rotate(90deg);
+}
+.page__content .wt-full[open] summary {
+  font-size: 0;  /* swap the label text when open */
+}
+.page__content .wt-full[open] summary::before {
+  font-size: 0.8rem;
+}
+.page__content .wt-full[open] summary::after {
+  content: "Show less";
+  font-size: 0.8rem;
+}
+.page__content .wt-full__body {
+  margin-top: 0.9em;
+  font-size: 0.97em;
+}
+.page__content .wt-full__body p:last-child {
+  margin-bottom: 0.2em;
+}
+.page__content .wt-full[open] .wt-full__body {
+  animation: wt-drop 0.35s ease both;
+}
+@keyframes wt-drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+.wt-tldr__label {
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page__content .wt-full[open] .wt-full__body { animation: none; }
 }
