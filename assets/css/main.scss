@@ -44,20 +44,20 @@
 
 /* ==========================================================================
    CUSTOM LOOK — "silicon schematic"
-   Dot-grid background, hex-addressed sections, profile header on top.
+   Dot-grid background, monospace headings, hex-addressed sections,
+   profile header on top. Oxford blue is the only accent colour.
    Change the tokens below to restyle everything.
    ========================================================================== */
 
 :root {
   --wt-accent: #0b2a5b;        /* deep Oxford blue */
-  --wt-highlight: #d4a017;     /* signal gold */
+  --wt-highlight: var(--wt-accent); /* single-colour palette: Oxford blue only */
   --wt-paper: #ffffff;
   --wt-card: #ffffff;
   --wt-ink: #1b1f27;
   --wt-muted: #5f6673;
   --wt-rule: rgba(11, 42, 91, 0.14);
   --wt-grid: rgba(11, 42, 91, 0.07);
-  --wt-serif: "Fraunces", Georgia, "Times New Roman", serif;
   --wt-sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   --wt-mono: "IBM Plex Mono", Menlo, Consolas, monospace;
 
@@ -75,7 +75,7 @@
 
 html[data-theme="dark"] {
   --wt-accent: #9cc0ff;
-  --wt-highlight: #f2c14e;
+  --wt-highlight: var(--wt-accent);
   --wt-paper: #0c111c;
   --wt-card: #131a29;
   --wt-ink: #e6e9ef;
@@ -106,8 +106,8 @@ body {
 }
 
 ::selection {
-  background: var(--wt-highlight);
-  color: #111;
+  background: var(--wt-accent);
+  color: var(--wt-paper);
 }
 
 /* ----- Masthead ----- */
@@ -126,7 +126,7 @@ body {
   right: 0;
   bottom: -1px;
   height: 2px;
-  background: linear-gradient(90deg, var(--wt-accent) 0 18%, var(--wt-highlight) 18% 22%, transparent 22%);
+  background: linear-gradient(90deg, var(--wt-accent) 0 22%, transparent 22%);
 }
 .greedy-nav {
   background: transparent;
@@ -148,7 +148,7 @@ body {
   margin-left: 0.1em;
 }
 .greedy-nav .masthead__menu-item--lg a {
-  font-family: var(--wt-serif);
+  font-family: var(--wt-mono);
   font-size: 1.35em;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -167,13 +167,13 @@ body {
 h1, h2, h3, h4,
 .page__title,
 .author__name {
-  font-family: var(--wt-serif);
+  font-family: var(--wt-mono);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 .page__title {
   color: var(--wt-accent);
-  font-size: 2.4em;
+  font-size: 2.1em;
   line-height: 1.1;
 }
 .page__content {
@@ -224,7 +224,7 @@ h1, h2, h3, h4,
 }
 .page__content a:hover {
   background-size: 100% 100%;
-  color: #111;
+  color: var(--wt-paper);
 }
 
 /* Inline code as little register labels */
@@ -268,7 +268,7 @@ h1, h2, h3, h4,
   height: 132px;
   max-width: none;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 8px;
   padding: 0;
   border: 3px solid var(--wt-card);
   box-shadow: 0 0 0 1px var(--wt-rule), 0 10px 28px rgba(11, 42, 91, 0.18);
@@ -279,9 +279,9 @@ h1, h2, h3, h4,
   box-shadow: 0 0 0 1px var(--wt-rule), 0 14px 34px rgba(11, 42, 91, 0.24);
 }
 #main .sidebar .author__name {
-  font-family: var(--wt-serif);
+  font-family: var(--wt-mono);
   color: var(--wt-accent);
-  font-size: 1.9em;
+  font-size: 1.7em;
   margin: 0.5em 0 0.15em;
   line-height: 1.1;
 }
@@ -392,7 +392,7 @@ h1, h2, h3, h4,
   box-shadow: 0 8px 22px rgba(11, 42, 91, 0.1);
 }
 .archive__item-title {
-  font-family: var(--wt-serif);
+  font-family: var(--wt-mono);
   font-size: 1.15em;
   margin-top: 0 !important;
   border-bottom: none !important;
