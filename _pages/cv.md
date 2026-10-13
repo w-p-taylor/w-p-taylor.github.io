@@ -9,40 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* DPhil (Oxford's name for a PhD) in Engineering Science, University of Oxford, 2025-Current
-* MEng in Electrical and Electronic Engineering, University of Nottingham, 2025
-* UK Electronic Skills Foundation (UKESF) Scholar (2023-2025)
+<p><a href="{{ base_path }}/files/cv.pdf" class="btn btn--primary" target="_blank">Download CV as PDF</a></p>
 
-
-Work experience
-======
-* Summer 2025: Research Assistant
-  * University of Oxford
-  * Researching GPU Memory Architectures for AI Acceleration
-  * Supervisor: Prof. Amro Awad
-
-* Summer 2024: Intern
-  * Qualcomm Technologies
-  * Working in R&D Lab on a variety of projects
-
-* Summer 2023: Intern
-  * Qualcomm Technologies
-  * Working in Physical Design and Implementation
-
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-
-
-Talks
-======
-Will be updated
-
-Teaching
-======
-Will be updated
+<object data="{{ base_path }}/files/cv.pdf" type="application/pdf" width="100%" style="height: 90vh; min-height: 600px;">
+  <p>Your browser can't display the PDF here. <a href="{{ base_path }}/files/cv.pdf">Download the CV</a> instead.</p>
+</object>
